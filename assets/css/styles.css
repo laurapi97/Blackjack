@@ -1,0 +1,54 @@
+
+html,body{
+    margin: 0px;
+    background-color: #2F4F30;
+    color:white;
+}
+
+
+
+.titulo{
+text-align: center;
+background-color: black;
+color: white;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+font-style: italic;
+font-weight: bold;
+padding: 20px;
+font-size: 25px;
+}
+
+.btn {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn btn-primary:hover{
+    
+    background-color: #3583b8; /* Color de fondo al pasar el mouse */
+    color: #f0f0f0; /* Cambia el color del texto si lo deseas */
+    transform: scale(1.05); /* Opcional: efecto de "zoom" */
+}
+
+.btn btn-danger:hover{
+    background-color: #9d454c; /* Color de fondo al pasar el mouse */
+    color: #f0f0f0; /* Cambia el color del texto si lo deseas */
+    transform: scale(1.05); /* Opcional: efecto de "zoom" */
+}
+
+
+.carta{
+    position: relative;
+    width: 150px;
+    left: 100px;
+    margin-left: -75px;
+
+}
+
+
+#computadora-cartas, #jugador-cartas{
+    height: 250px;
+
+}

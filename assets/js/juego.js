@@ -1,31 +1,45 @@
 
 
-// 2C = 2 de tréboles o two of clubs
-// 2D= 2 de tréboles o two of diamonds
-// 2H = 2 de tréboles o two of hearts
-// 2S = 2 de tréboles o two of espadas
 
+// patron módulo
 
+( () => {
+   'use strict'
+
+   
 let deck = []; // arreglo de cartas
-const tipos =['C','D','H','S'];
-const especiales =['A', 'J','Q','K'];
 
-let puntosJugador=0;
+const tipos =['C','D','H','S'],
+      especiales =['A', 'J','Q','K'];
+
+let puntosJugador=0,
     puntosComputadora=0;
-
+   
 
 
 // REFERENCIAS DE HTML
 
-const btnPedir = document.querySelector('#btnPedir');
-const btnDetener = document.querySelector('#btnDetener');
-const puntosHtml =document.querySelectorAll('small');
-const divCartasJugador = document.querySelector('#jugador-cartas');
-const divCartasComputador = document.querySelector('#computadora-cartas')
+const btnPedir = document.querySelector('#btnPedir'),
+      btnDetener = document.querySelector('#btnDetener'),
+      btnNuevo = document.querySelector('#btnNuevo');
+      
+
+
+const divCartasJugador = document.querySelector('#jugador-cartas'),
+      divCartasComputador = document.querySelector('#computadora-cartas'),
+      puntosHtml =document.querySelectorAll('small');
+
+
+
+// esta función inicializa el juego
+const inicializarJuego = () => {
+      deck = crearDeck();
+};
 
 // Crea un nuevo deck 
 const crearDeck =() => {
 
+    deck = [];
     for(let i = 2 ; i <= 10; i++){ // para las cartas que van del 2 al 9
         
         for (let tipo of tipos){
@@ -38,44 +52,32 @@ const crearDeck =() => {
             deck.push( esp + tipo );
         }
     }
-    // console.log( deck );
-
-
-    // shufle
-    deck = _.shuffle(deck);
-    console.log( deck );
-    return deck;
-
     
-}
+    // shufle
+    return _.shuffle(deck);
 
+};
 
-crearDeck();
-
-
+// PEDIR CARTA //
 //Esta funcion me permite tomar una carta
-const pedirCarta =() =>{
-
-    if(deck.length ===0){
-        throw ' No hay mas carta en el deck';
+const pedirCarta = () => {
+    if (deck.length === 0) {
+        throw new Error('No hay más cartas en el deck');
     }
-    const carta = deck.pop();// elimina la ultima carta del deck y lo regresa
-    return carta;
-
-}
+    return deck.pop();
+};
 
                              // JUGADOR
 
 const valorCarta = (carta) =>{
 
     const valor = carta.substring (0, carta.length - 1); 
-  
     return (isNaN (valor) ) ?
             (valor ==='A') ? 11 : 10 
             : valor * 1; 
-  }
+  };
 
-
+  
 
                             // COMPUTADORA //
 
@@ -119,9 +121,9 @@ const turnoComputadora = (puntosMinimos) =>{
    } else {
     alert('Computadora gana');
    }
-}, 10);
+   }, 10);
 
-}
+};
 
 
 
@@ -184,29 +186,42 @@ btnDetener.addEventListener('click', ( )=>{
 });
 
 // boton nuevo juego
-btnNuevo. addEventListener('click', ( )=>{
-
-
+btnNuevo.addEventListener('click', ()=> {
     console.clear();
-    deck =[];
-    deck = crearDeck();
+    inicializarJuego();
+    // deck =[];
+    // deck = crearDeck();
+    
 
 
     puntosJugador =0;
     puntosComputadora=0;
+
     puntosHtml[0].innerText=0;
     puntosHtml [1].innerText=0;
-
-    divCartasComputador.innerHtml ='';
-    divCartasJugador.innerHtml ='';
-    btnPedir.enabled=true;
-    btnDetener.enabled=true;
-
     
 
+    divCartasComputador.innerHTML='';
+    divCartasJugador.innerHTML= '';
+    btnPedir.disabled=false;
+    btnDetener.disabled=false;
 
+    
 });
 
 
 
+
+
+})(); // esto indica que la función puede ser auto invocada
+
+
+
+
+
+
+// 2C = 2 de tréboles o two of clubs
+// 2D= 2 de tréboles o two of diamonds
+// 2H = 2 de tréboles o two of hearts
+// 2S = 2 de tréboles o two of espadas
 
